@@ -1,4 +1,19 @@
-# Dataset information
+# Codebook
+
+## Variables in the analysis script
+
+* filename: String containing the filename of the data archive
+* foldername: String containing the filename of the folder of the extracted archive
+* features: Table containing all the features (or functions)
+* x\_train, y\_train and subject\_train: Tables containing the training data
+* x\_test, y\_test and subject\_test: Tables containing the testing data
+* X\_data, Y\_data and Subject\_data: Table created by combining the train and test data
+* Complete\_Data: Table created by combining all the X, Y and subject data.
+* Clean\_Data: Table which only includes the mean and standard deviation measurements and it is grouped by subject and activity
+* Summary\_Data: Table which summarises all the variables by taking their mean for unique pairs of subject and activity
+
+
+## Dataset information
 
 The dataset is the part of the Human Activity Recognition experiments.
 
@@ -6,7 +21,7 @@ The experiments have been carried out with a group of 30 volunteers within an ag
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features\_info.txt' for more details. 
 
-# For each record it is provided:
+### For each record it is provided:
 
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
@@ -14,7 +29,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 - Its activity label. 
 - An identifier of the subject who carried out the experiment.
 
-# The dataset includes the following files:
+### The dataset includes the following files:
 
 - 'README.txt'
 
@@ -32,7 +47,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 - 'test/y\_test.txt': Test labels.
 
-# Files and their descriptions
+### Files and their descriptions
 
 - 'train/subject\_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
 
@@ -42,12 +57,3 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 - 'train/Inertial Signals/body\_gyro\_x\_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
-# Walkthrough
-
-1. Firstly, we have to download the dataset using the `download.file` function which gives us a zip archive. After unzipping it using the `unzip` function we can use the dataset.
-2. Now all the datasets are read using the `read.table` command.
-3. The train and test datasets are combined using the `rbind` function.
-4. All the combined datasets of X, Y and subjects are combined using the `cbind` function which combines the datasets along columns.
-5. The `select` function from the `dplyr` library is used for only including the mean and standard deviation measurements.
-6. Now the variable names are made readable by replacing the short forms using the `mgsub_regex` function from the `textclean` library.
-7. Lastly, a new table is created which contains the mean of all variables for each subject and activity. This is done using the `group_by` and `summarise_all` functions. This table is finally written to a file using the `write.table` function.
